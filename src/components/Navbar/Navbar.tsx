@@ -1,8 +1,9 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import NavButton from "./NavButton";
 
 export default function Navbar({ state, descriptors, navigation }: any) {
   return (
-    <View style={{ flexDirection: "row" }}>
+    <View style={styles.container}>
       {state.routes.map((route: any, index: any) => {
         const { options } = descriptors[route.key];
         const label =
@@ -15,43 +16,18 @@ export default function Navbar({ state, descriptors, navigation }: any) {
         const isFocused = state.index === index;
 
         const onPress = () => {
-          const event = navigation.emit({
-            type: "tabPress",
-            target: route.key,
-            canPreventDefault: true,
-          });
-
-          if (!isFocused && !event.defaultPrevented) {
-            // The `merge: true` option makes sure that the params inside the tab screen are preserved
+          if (!isFocused) {
             navigation.navigate({ name: route.name, merge: true });
           }
         };
-
-        const onLongPress = () => {
-          navigation.emit({
-            type: "tabLongPress",
-            target: route.key,
-          });
-        };
-
         return (
-          <TouchableOpacity
-            accessibilityRole="button"
-            accessibilityState={isFocused ? { selected: true } : {}}
-            accessibilityLabel={options.tabBarAccessibilityLabel}
-            testID={options.tabBarTestID}
-            onPress={onPress}
-            onLongPress={onLongPress}
-            style={{ flex: 1 }}
-          >
-            <Text style={{ color: isFocused ? "#673ab7" : "#222" }}>
-              {label}
-            </Text>
-          </TouchableOpacity>
+          <NavButton isFocused={isFocused} onPress={onPress} label={label} />
         );
       })}
     </View>
   );
 }
 
-// ...
+const styles = StyleSheet.create({
+  container: { flexDirection: "row", height: 50 },
+});

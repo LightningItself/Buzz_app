@@ -14,16 +14,10 @@ export default function App() {
       <Tab.Navigator tabBar={(props) => <Navbar {...props} />}>
         <Tab.Screen name="Hive" component={HiveScreen} />
         <Tab.Screen name="Post" component={PostScreen} />
+        <Tab.Screen name="Test" component={PostScreen} />
+        <Tab.Screen name="Test1" component={PostScreen} />
+        <Tab.Screen name="Test2" component={PostScreen} />
       </Tab.Navigator>
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
