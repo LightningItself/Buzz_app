@@ -1,4 +1,13 @@
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Pressable,
+} from "react-native";
+import { Octicons } from "@expo/vector-icons";
+import { NavigationHelpers, ParamListBase } from "@react-navigation/native";
+import { BottomTabNavigationEventMap } from "@react-navigation/bottom-tabs";
 
 export type NavButtonProps = {
   isFocused: boolean;
@@ -7,12 +16,20 @@ export type NavButtonProps = {
 };
 
 const NavButton: React.FC<NavButtonProps> = ({ isFocused, onPress, label }) => {
+  const icon =
+    label === "Home"
+      ? "home"
+      : label === "Explore"
+      ? "search"
+      : label === "Create"
+      ? "duplicate"
+      : label === "Hives"
+      ? "heart"
+      : "person";
   return (
-    <TouchableOpacity onPress={onPress} style={styles.container}>
-      <Text style={{ color: isFocused ? "#673ab7" : "#222", ...styles.text }}>
-        {label}
-      </Text>
-    </TouchableOpacity>
+    <Pressable onPress={onPress} style={styles.container}>
+      <Octicons name={icon} size={24} color={isFocused ? "white" : "gray"} />
+    </Pressable>
   );
 };
 
