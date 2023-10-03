@@ -1,10 +1,14 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
+import Post from "../components/Post/Post";
 
 const PostScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>Post Screen. Post Data and subPosts will be displayed here.</Text>
+      <Post userData={{
+        displayImage: ""
+      }} />
+      
       <StatusBar style="auto" />
     </View>
   );
@@ -17,6 +21,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center",
+    // justifyContent: "center",
   },
 });
