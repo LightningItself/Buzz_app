@@ -1,11 +1,11 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import Post from "../components/Post/Post";
 
 const PostScreen = () => {
   return (
     <View style={styles.container}>
-      <Post userData={{
+      <Post postData={{
         displayImage: ""
       }} />
       

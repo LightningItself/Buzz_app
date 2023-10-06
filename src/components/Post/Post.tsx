@@ -1,15 +1,12 @@
 import { Image, Text, View, StyleSheet, Button, Pressable } from "react-native"
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome"
-import { faHeart, faComments } from "@fortawesome/free-regular-svg-icons"
+import { Ionicons, FontAwesome } from '@expo/vector-icons';
+import { useState } from "react"
 
+export type PostProps = {
+    postData: any;
+}
 
-export default function Post(props: any) {
-    const postImage: Function = () => {
-        if (props.userData.displayImage !== "j") return (
-            <Image source={require('../../../assets/test/Profile.jpg')} style={[styles.division, styles.displayImage]}/> 
-        )
-    }
-
+const Post:React.FC<PostProps> = ({postData}) => {
     return (
         <View style={styles.container}>
             <View style={styles.horStack}>
@@ -19,15 +16,15 @@ export default function Post(props: any) {
                 </View>
             </View>
             <View style={styles.division}>
-                <Text style={styles.caption}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</Text>
+                <Text style={[styles.caption, {marginTop: 0}]}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</Text>
             </View>
-            {postImage()}
+            {postData.displayImage !== "" && <Image source={require('../../../assets/test/Profile.jpg')} style={[styles.division, styles.displayImage]} />}
             <View style={styles.horStack}>
-                <Pressable onPress={() => console.log('like')}>
-                    <FontAwesomeIcon icon={faHeart} />
+                <Pressable onPress={() => {}}>
+                    <Ionicons name="heart-outline" style={styles.buttons} size={30} color="black" />
                 </Pressable>
-                <Pressable onPress={() => console.log('comment')}>
-                    <FontAwesomeIcon icon={faComments} />
+                <Pressable onPress={() => {}}>
+                    <FontAwesome name="mail-reply" style={[styles.buttons, {marginTop: 5}]} size={25} color="black" />
                 </Pressable>
             </View>
             <View style={styles.division}>
@@ -36,6 +33,8 @@ export default function Post(props: any) {
         </View>
     )
 }
+
+export default Post;
 
 const styles = StyleSheet.create({
     container: {
@@ -68,12 +67,7 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     buttons: {
-        margin: 10
-    },
-    reactionPanel: {
-        
-    },
-    commemts: {
-       
+        marginRight: 2.5,
+        marginLeft: 10
     }
 })
